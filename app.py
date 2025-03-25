@@ -5,7 +5,6 @@ from pages.dashboard import dashboard_bp
 from pages.evaluation import evaluation_bp
 import os
 
-# 📌 Vérifier si le dossier "static/" existe, sinon le créer
 if not os.path.exists("static"):
     os.makedirs("static")
 
