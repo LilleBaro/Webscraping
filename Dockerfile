@@ -6,7 +6,7 @@ FROM python:3.10
 RUN apt update && apt install -y git
 
 # 3️⃣ Cloner le projet depuis GitHub
-RUN git clone https://github.com/LilleBaro/Webscrapping_app.git 
+RUN git clone https://github.com/LilleBaro/Webscraping.git
 #/Projet_final_Devops-main /Projet_final_Devops-main
 
 # 4️⃣ Définir le répertoire de travail
@@ -14,8 +14,7 @@ WORKDIR /Projet_final_Devops-main /Projet_final_Devops-main
 
 # 5️⃣ Installer les dépendances depuis requirements.txt
 
-#COPY requirements.txt /Projet_final_Devops-main/Projet_final_Devops-main/requirements.txt
-COPY /Webscrapping_app/Projet_final_Devops-main/Projet_final_Devops-main/requirements.txt .
+COPY /MyScrapper-Main/requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
