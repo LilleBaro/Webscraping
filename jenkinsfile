@@ -1,0 +1,39 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage("Clone Code") {
+            steps {
+                echo "Cloning the code"
+                git branch: 'main', url:'https://github.com/LilleBaro/Webscraping.git'
+            }
+        }
+
+        stage("Build") {
+            steps {
+                echo "Building the image"
+                bat 'docker build -t image .'
+            }
+        }
+
+        stage("Deploy") {
+            steps {
+                echo "Deploying the container"
+                bat 'docker-compose down && docker-compose up -d'
+            }
+        }
+    }
+
+    post {
+        success {
+            emailext subject: "Pipeline réussi",
+                      body: "Le pipeline Jenkins a été exécuté avec succès.",
+                      to: 'msqure59@outlook.com',
+        }
+        failure {
+            emailext subject: "Pipeline échoué",
+                      body: "Le pipeline Jenkins a échoué. Veuillez vérifier les logs.",
+                      to: 'msqure59@outlook.com'
+        }
+    }
+}
